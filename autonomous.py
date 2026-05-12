@@ -25,6 +25,7 @@ model.load_state_dict(torch.load("fine_tuned_resnet_400.pt"))
 model.eval()
 
 transform = transforms.Compose((
+    transforms.Lambda(lambda img: img.crop((0, 60, img.width, img.height - 25))),
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
     transforms.Normalize(
@@ -54,7 +55,7 @@ def telemetry(sid, data):
 
         img_tensor = transform(img).unsqueeze(0)
 
-        print(img_tensor.shape)
+        #print(img_tensor.shape)
 
         with torch.no_grad():
             out = model(img_tensor)
