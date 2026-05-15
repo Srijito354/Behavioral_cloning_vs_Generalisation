@@ -17,7 +17,7 @@ from geventwebsocket.handler import WebSocketHandler
 sio = socketio.Server(async_mode='gevent', logger=True, engineio_logger=True)
 app = socketio.WSGIApp(sio, Flask(__name__))
 
-speed_limit = 15
+speed_limit = 10
 
 model = Modela()
 #model.load_state_dict(torch.load("trained_model_pre(non-panorama-only-center).pt"))
